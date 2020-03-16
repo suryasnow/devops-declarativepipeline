@@ -2,8 +2,9 @@ def orchestrationToolId = "67d8cfe00f6200109d1a986eb4767e43"
 def nexusInstanceId = "localNexus"
 def nexusGroupId = "com.globex.web"
 def nexusPackaging = "war"
-def artifactName = "globex-web1" // also used for nexus filePath and artifactId attributes
-def packageName = "globex-package1"
+def artifactName = "ppm-grc-client" // also used for nexus filePath and artifactId attributes
+def packageName = "ppm-package"
+def repoName = "ppm-artifact-repo"
 
 def artifactVersion = "2.${env.BUILD_NUMBER}"
 
@@ -43,7 +44,7 @@ pipeline {
                     steps {
                         snDevOpsStep()          
                         sh 'mvn package'
-                        snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "sa-web-ui.jar","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "services-1031"}]}""")
+                        snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
                     }
                 }
             }
