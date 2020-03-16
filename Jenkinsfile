@@ -4,13 +4,11 @@ def nexusGroupId = "com.globex.web"
 def nexusPackaging = "war"
 def artifactName = "globex-web1" // also used for nexus filePath and artifactId attributes
 def packageName = "globex-package1"
-//def artifactUrl = "com.globex.web/globex-web"
+
 def artifactVersion = "2.${env.BUILD_NUMBER}"
-//def artifactVersion = "webapp- snapshot-1"
-//def artifactVersion = "1.40"
-//def artifactVersionUrl = "com.globex.web/globex-web/${artifactVersion}/globex-web-${artifactVersion}"
+
 def artifactSemVersion = "${artifactVersion}.0"
-//def repoUrl= "ff-artifacts-repo3"
+
 def repoName = "ff-artifacts-repo" // also used for nexusRepositoryId attribute
 pipeline {
     agent any
