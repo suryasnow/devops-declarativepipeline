@@ -21,32 +21,34 @@ pipeline {
                snDevOpsStep()
                 echo 'Building..'
                 echo "Pipeline name is ${env.JOB_NAME}"
- 				echo "Pipeline run rumber is ${env.BUILD_NUMBER}"
- 				echo "Stage name is ${env.STAGE_NAME}"
- 				echo "GIT branch is ${env.GIT_BRANCH}"
+                echo "Pipeline run rumber is ${env.BUILD_NUMBER}"
+                echo "Stage name is ${env.STAGE_NAME}"
+                echo "GIT branch is ${env.GIT_BRANCH}"
                 echo "Globalprops -- ${env.snartifacttoolid} -- ${env.snhost} -- ${env.snuser} -- ${env.snpassword} ";
-				//sh 'mvn compile'
+                //sh 'mvn compile'
                 //sh 'mvn test -Dtest=AppTest'
-				sh 'mvn clean install'
-               	//sh 'mvn test'
-	      }
+                sh 'mvn clean install'
+                //sh 'mvn test'
+          }
             post {
                 always {
                     junit '**/target/surefire-reports/*.xml' 
                 }
             }
         }
+
         stage('UAT deploy') {
-          stages{
-           stage('UAT pre-prod deploy') { 
-            steps {
-                snDevOpsStep()			
-                sh 'mvn package'
-				snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "sa-web-ui.jar","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "services-1031"}]}""")
-	    	}
-		}
-	}
-     }
+            stages {
+                stage('UAT pre-prod deploy') { 
+                    steps {
+                        snDevOpsStep()          
+                        sh 'mvn package'
+                        snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "sa-web-ui.jar","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "services-1031"}]}""")
+                    }
+                }
+            }
+        }
+        
         stage('UAT test') {
             stages {
                 stage('UAT unit test') {
