@@ -1,4 +1,4 @@
-def orchestrationToolId = "67d8cfe00f6200109d1a986eb4767e43"
+# def orchestrationToolId = "67d8cfe00f6200109d1a986eb4767e43"
 def nexusInstanceId = "localNexus"
 def nexusGroupId = "com.globex.web"
 def nexusPackaging = "war"
@@ -45,7 +45,7 @@ pipeline {
                         snDevOpsStep()
                         sh 'mvn compile'
                         sh 'mvn verify'
-                        snDevOpsChange()
+                        # snDevOpsChange()
                     }
                     post {
                         success {
@@ -73,8 +73,8 @@ pipeline {
                 stage('UAT pre-prod deploy') { 
                     steps {
                         snDevOpsStep()          
-                        sh 'mvn package'
-                        snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
+                        # sh 'mvn package'
+                        # snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
                     }
                 }
             }
