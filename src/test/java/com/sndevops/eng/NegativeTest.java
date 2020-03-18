@@ -16,7 +16,7 @@ public class NegativeTest {
     }
 
     @Test
-    //@Ignore
+    @Ignore
     public void negativeTest2()throws Exception {
         Thread.sleep(5000);
     }
