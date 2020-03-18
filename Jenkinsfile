@@ -1,4 +1,4 @@
-# def orchestrationToolId = "67d8cfe00f6200109d1a986eb4767e43"
+//def orchestrationToolId = "67d8cfe00f6200109d1a986eb4767e43"
 def nexusInstanceId = "localNexus"
 def nexusGroupId = "com.globex.web"
 def nexusPackaging = "war"
@@ -44,8 +44,10 @@ pipeline {
                     steps {
                         snDevOpsStep()
                         sh 'mvn compile'
-                        sh 'mvn verify'
-                        # snDevOpsChange()
+                        sh 'mvn test -Dtest=AppTest'
+                        //sh 'mvn verify'
+                        
+                        // snDevOpsChange()
                     }
                     post {
                         success {
@@ -67,6 +69,19 @@ pipeline {
                 }
             }
         }
+        
+        stage('IT test') {
+            steps {
+                snDevOpsStep()
+                sh 'mvn test -Dtest=NegativeTest'
+            }
+            post {
+                success {
+                    junit '**/target/surefire-reports/*.xml' 
+                  }
+              }
+        }
+                
         
         stage('UAT deploy') {
             stages {
