@@ -47,7 +47,7 @@ pipeline {
                         sh 'mvn test -Dtest=AppTest'
                         //sh 'mvn verify'
                         
-                        // snDevOpsChange()
+                        // 
                     }
                     post {
                         success {
@@ -87,9 +87,10 @@ pipeline {
             stages {
                 stage('UAT pre-prod deploy') { 
                     steps {
-                        snDevOpsStep()          
-                        # sh 'mvn package'
-                        # snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
+                        snDevOpsStep()     
+                        // snDevOpsChange()
+                        // sh 'mvn package'
+                       // snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
                     }
                 }
             }
