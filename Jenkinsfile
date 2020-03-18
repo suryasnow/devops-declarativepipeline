@@ -38,18 +38,6 @@ pipeline {
             }
         }
 
-        stage('UAT deploy') {
-            stages {
-                stage('UAT pre-prod deploy') { 
-                    steps {
-                        snDevOpsStep()          
-                        sh 'mvn package'
-                        snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
-                    }
-                }
-            }
-        }
-        
         stage('UAT test') {
             stages {
                 stage('UAT unit test') {
@@ -79,5 +67,19 @@ pipeline {
                 }
             }
         }
+        
+        stage('UAT deploy') {
+            stages {
+                stage('UAT pre-prod deploy') { 
+                    steps {
+                        snDevOpsStep()          
+                        sh 'mvn package'
+                        snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
+                    }
+                }
+            }
+        }
+        
+
     }
 }
