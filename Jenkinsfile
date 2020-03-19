@@ -39,8 +39,6 @@ pipeline {
         }
 
         stage('UAT test') {
-            stages {
-                stage('UAT unit test') {
                     steps {
                         snDevOpsStep()
                         sh 'mvn compile'
@@ -49,26 +47,8 @@ pipeline {
                         
                         // 
                     }
-                    post {
-                        success {
-                            junit '**/target/surefire-reports/*.xml' 
-                        }
-                    }
-                }
-                stage('UAT static code test') {
-                    steps {
-                        snDevOpsStep()
-                        sh 'mvn compile'
-                        sh 'mvn verify'
-                    }
-                    post {
-                        success {
-                            junit '**/target/surefire-reports/*.xml' 
-                        }
-                    }
-                }
             }
-        }
+        
         
         stage('IT test') {
             steps {
@@ -84,8 +64,6 @@ pipeline {
                 
         
         stage('UAT deploy') {
-            stages {
-                stage('UAT pre-prod deploy') { 
                     steps {
                         snDevOpsStep()     
                         // snDevOpsChange()
@@ -93,9 +71,6 @@ pipeline {
                        // snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
                     }
                 }
-            }
-        }
-        
 
     }
 }
