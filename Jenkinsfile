@@ -18,6 +18,11 @@ pipeline {
                         sh 'mvn compile'
                         sh 'mvn test -Dtest=AppTest'
                     }
+                      post {
+              always {
+              junit '**/target/surefire-reports/*.xml' 
+              }
+            }
             }
         
     }
