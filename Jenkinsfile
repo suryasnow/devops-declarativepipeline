@@ -27,6 +27,7 @@ pipeline {
         stage("IT Test") {
             steps {
                snDevOpsStep()
+                snDevOpsChange()
               // sh 'mvn clean install'
           }
         }
