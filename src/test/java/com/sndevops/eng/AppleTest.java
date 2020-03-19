@@ -5,7 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.Ignore;
 
-public class AppTest {
+public class AppleTest {
     private String INPUT = "4";
 
     @Test
