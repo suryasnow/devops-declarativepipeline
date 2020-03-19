@@ -1,16 +1,4 @@
-//def orchestrationToolId = "67d8cfe00f6200109d1a986eb4767e43"
-// def nexusInstanceId = "localNexus"
-// def nexusGroupId = "com.globex.web"
-// def nexusPackaging = "war"
-def artifactName = "ppm-grc-client" // also used for nexus filePath and artifactId attributes
-def packageName = "ppm-package"
-def repoName = "ppm-artifact-repo"
 
-def artifactVersion = "2.${env.BUILD_NUMBER}"
-
-def artifactSemVersion = "${artifactVersion}.0"
-
-//def repoName = "ff-artifacts-repo" // also used for nexusRepositoryId attribute
 pipeline {
     agent any
     tools { 
