@@ -25,7 +25,7 @@ pipeline {
           }
         }
 
-        stage('Unit test 2') {
+        stage('Unit test') {
             stages {
                 stage('Unit test') {
                     steps {
