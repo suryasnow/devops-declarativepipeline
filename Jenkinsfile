@@ -24,5 +24,12 @@ pipeline {
             }
             }
         
+        stage("IT Test") {
+            steps {
+               snDevOpsStep()
+              // sh 'mvn clean install'
+          }
+        }
+        
     }
 }
