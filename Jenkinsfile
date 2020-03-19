@@ -27,7 +27,7 @@ pipeline {
 
         stage('Unit test') {
             stages {
-                stage('Unit test') {
+                stage('Unit test inner') {
                     steps {
                         snDevOpsStep()
                         sh 'mvn compile'
