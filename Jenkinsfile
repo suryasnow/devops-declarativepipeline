@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
     tools { 
@@ -16,10 +15,7 @@ pipeline {
                     steps {
                         snDevOpsStep()
                         sh 'mvn compile'
-                        sh 'mvn test -Dtest=AppTest'
-                        //sh 'mvn verify'
-                        
-                        // 
+                        sh 'mvn test -Dtest=AppTest' 
                     }
             }
         
