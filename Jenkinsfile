@@ -4,14 +4,14 @@ pipeline {
         maven 'Maven' 
     }
     stages {
-        stage('CI') {
+        stage("CI") {
             steps {
                snDevOpsStep()
                 sh 'mvn clean install'
           }
         }
 
-        stage('UAT test') {
+        stage("UAT test") {
                     steps {
                         snDevOpsStep()
                         sh 'mvn compile'
