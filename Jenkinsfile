@@ -7,15 +7,17 @@ pipeline {
         stage("CI") {
             steps {
                snDevOpsStep()
-                sh 'mvn clean install'
+               // sh 'mvn clean install'
+                echo "CI"
           }
         }
 
         stage("UAT test") {
                     steps {
                         snDevOpsStep()
-                        sh 'mvn compile'
-                        sh 'mvn test -Dtest=AppTest' 
+                        //sh 'mvn compile'
+                        //sh 'mvn test -Dtest=AppTest' 
+                        echo "UAT test"
                     }
             }
         
