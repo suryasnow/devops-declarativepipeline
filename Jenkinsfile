@@ -1,3 +1,8 @@
+def artifactName = "ppm-jar" // also used for nexus filePath and artifactId attributes
+def artifactVersion = "2.${env.BUILD_NUMBER}"
+def artifactSemVersion = "${artifactVersion}.0"
+def repoName = "ppm-repo"
+
 pipeline {
     agent any
     tools { 
@@ -65,7 +70,7 @@ pipeline {
                         snDevOpsStep()     
                         // snDevOpsChange()
                         // sh 'mvn package'
-                       // snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
+                        snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
                     }
                 }
             }
