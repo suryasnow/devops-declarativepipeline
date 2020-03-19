@@ -11,7 +11,7 @@ public class NegativeTest {
     @Test
     public void negativeTest1() throws Exception{
         Thread.sleep(5000);
-        Assert.assertEquals(INPUT,"44");
+        Assert.assertEquals(INPUT,"4");
         
     }
 
