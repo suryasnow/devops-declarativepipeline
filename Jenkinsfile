@@ -49,28 +49,5 @@ pipeline {
                     }
             }
         
-        
-        stage('IT test') {
-            steps {
-                snDevOpsStep()
-                sh 'mvn test -Dtest=NegativeTest'
-            }
-            post {
-                success {
-                    junit '**/target/surefire-reports/*.xml' 
-                  }
-              }
-        }
-                
-        
-        stage('UAT deploy') {
-                    steps {
-                        snDevOpsStep()     
-                        // snDevOpsChange()
-                        // sh 'mvn package'
-                       // snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
-                    }
-                }
-
     }
 }
