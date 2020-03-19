@@ -12,7 +12,7 @@ pipeline {
           }
         }
 
-        stage("UAT test") {
+        stage('UAT test') {
                     steps {
                         snDevOpsStep()
                         sh 'mvn compile'
