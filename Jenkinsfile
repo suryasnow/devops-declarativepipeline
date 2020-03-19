@@ -7,7 +7,7 @@ pipeline {
         stage("CI") {
             steps {
                snDevOpsStep()
-               sh 'mvn clean install'
+               //sh 'mvn clean install'
           }
         }
 
