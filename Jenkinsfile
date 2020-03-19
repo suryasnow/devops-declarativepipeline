@@ -70,10 +70,10 @@ pipeline {
                         snDevOpsStep()     
                         // snDevOpsChange()
                         // sh 'mvn package'
-                        echo "artifactName - " ${artifactName}
-                        echo "artifactVersion - " ${artifactVersion}
-                        echo "artifactSemVersion - " ${artifactSemVersion}
-                        echo "repoName - " ${repoName}
+                        echo "artifactName - ${artifactName}" 
+                        echo "artifactVersion - ${artifactVersion}" 
+                        echo "artifactSemVersion - ${artifactSemVersion}" 
+                        echo "repoName - ${repoName}" 
                         snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
                     }
                 }
