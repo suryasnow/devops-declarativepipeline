@@ -54,6 +54,11 @@ pipeline {
             steps {
                 snDevOpsStep()
                 sh 'mvn test -Dtest=NegativeTest'
+                echo "artifactName - ${artifactName}" 
+                        echo "artifactVersion - ${artifactVersion}" 
+                        echo "artifactSemVersion - ${artifactSemVersion}" 
+                        echo "repoName - ${repoName}" 
+                        snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
             }
             post {
                 success {
@@ -70,11 +75,11 @@ pipeline {
                         snDevOpsStep()     
                         // snDevOpsChange()
                         // sh 'mvn package'
-                        echo "artifactName - ${artifactName}" 
+                        //echo "artifactName - ${artifactName}" 
                         echo "artifactVersion - ${artifactVersion}" 
                         echo "artifactSemVersion - ${artifactSemVersion}" 
                         echo "repoName - ${repoName}" 
-                        snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
+                        // snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
                     }
                 }
             }
