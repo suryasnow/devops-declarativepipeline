@@ -21,11 +21,6 @@ pipeline {
         }
 
         stage('UAT test') {
-            post {
-                success {
-                    junit '**/target/surefire-reports/*.xml' 
-                }
-            }
             stages {
                 stage('UAT unit test') {
                     steps {
@@ -33,16 +28,17 @@ pipeline {
                         sh 'mvn compile'
                         sh 'mvn test -Dtest=AppTest'
                     }
+                }
+
                 stage('UAT static code test') {
-                    steps {
-                        snDevOpsStep()
-                        sh 'mvn compile'
-                        sh 'mvn verify'
+                        steps {
+                            snDevOpsStep()
+                            sh 'mvn compile'
+                            sh 'mvn verify'
+                        }
                     }
                 }
-            }
         }
-      }
         
         stage('IT test') {
             steps {
