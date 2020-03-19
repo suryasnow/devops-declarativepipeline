@@ -15,7 +15,7 @@ pipeline {
         stage("UAT test") {
                     steps {
                         snDevOpsStep()
-                        //sh 'mvn compile'
+                        sh 'mvn compile'
                         //sh 'mvn test -Dtest=AppTest' 
                         echo "UAT test"
                     }
