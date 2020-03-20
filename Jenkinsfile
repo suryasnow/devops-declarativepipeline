@@ -18,11 +18,11 @@ pipeline {
                 echo "Pipeline run rumber is ${env.BUILD_NUMBER}"
                 echo "Stage name is ${env.STAGE_NAME}"
                 echo "GIT branch is ${env.GIT_BRANCH}"
-                // echo "Globalprops -- ${env.snartifacttoolid} -- ${env.snhost} -- ${env.snuser} -- ${env.snpassword} ";
-                //sh 'mvn compile'
-                //sh 'mvn test -Dtest=AppTest'
-                // sh 'mvn clean install'
-                //sh 'mvn test'
+                echo "artifactName - ${artifactName}" 
+                echo "artifactVersion - ${artifactVersion}" 
+                echo "artifactSemVersion - ${artifactSemVersion}" 
+                echo "repoName - ${repoName}" 
+                snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
           }
         }
 
@@ -35,7 +35,6 @@ pipeline {
                         sh 'mvn test -Dtest=AppTest'
                     }
                 }
-
                 stage('static code test') {
                         steps {
                             snDevOpsStep()
@@ -55,11 +54,6 @@ pipeline {
             steps {
                 snDevOpsStep()
                 sh 'mvn test -Dtest=NegativeTest'
-                echo "artifactName - ${artifactName}" 
-                        echo "artifactVersion - ${artifactVersion}" 
-                        echo "artifactSemVersion - ${artifactSemVersion}" 
-                        echo "repoName - ${repoName}" 
-                        snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
             }
             post {
                 success {
@@ -67,18 +61,15 @@ pipeline {
                   }
               }
         }
-                
         
         stage('UAT deploy') {
             stages {
                 stage('UAT pre-prod deploy') { 
                     steps {
                         snDevOpsStep()     
-                        // snDevOpsChange()
-                        // sh 'mvn package'
                         echo "packageName - ${packageName}" 
-                        // snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
                         snDevOpsPackage(name: "${packageName}", artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
+                        snDevOpsChange()
                     }
                 }
             }
