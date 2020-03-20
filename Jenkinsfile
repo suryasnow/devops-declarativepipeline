@@ -49,6 +49,8 @@ pipeline {
             steps {
                 snDevOpsStep()
                 sh 'mvn test -Dtest=NegativeTest'
+                echo "packageName - ${packageName}" 
+                snDevOpsPackage(name: "${packageName}", artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
             }
             post {
                 success {
@@ -62,8 +64,8 @@ pipeline {
                 stage('UAT pre-prod deploy') { 
                     steps {
                         snDevOpsStep()     
-                        echo "packageName - ${packageName}" 
-                        snDevOpsPackage(name: "${packageName}", artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
+                        //echo "packageName - ${packageName}" 
+                        //snDevOpsPackage(name: "${packageName}", artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
                         snDevOpsChange()
                     }
                 }
