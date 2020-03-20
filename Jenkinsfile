@@ -53,11 +53,6 @@ pipeline {
                 echo "packageName - ${packageName}" 
                 snDevOpsPackage(name: "${packageName}", artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
             }
-            post {
-                success {
-                    junit '**/target/surefire-reports/*.xml' 
-                  }
-              }
         }
         
         stage('UAT deploy') {
@@ -73,4 +68,10 @@ pipeline {
             }
         }
     }
+
+    post {
+        always {
+            junit '**/target/surefire-reports/*.xml' 
+        }
+     }
 } 
