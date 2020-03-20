@@ -65,8 +65,6 @@ pipeline {
                 stage('UAT pre-prod deploy') { 
                     steps {
                         snDevOpsStep()     
-                        //echo "packageName - ${packageName}" 
-                        //snDevOpsPackage(name: "${packageName}", artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
                         snDevOpsChange()
                     }
                 }
