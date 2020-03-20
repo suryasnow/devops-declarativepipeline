@@ -42,12 +42,7 @@ pipeline {
                             sh 'mvn verify'
                         }
                     }
-                }
-                //post {
-                  //  success {
-                   // junit '**/target/surefire-reports/*.xml' 
-                 // }
-             // }            
+                }          
         }
         
         stage('IT test') {
