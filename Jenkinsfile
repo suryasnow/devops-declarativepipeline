@@ -22,6 +22,7 @@ pipeline {
                 echo "artifactVersion - ${artifactVersion}" 
                 echo "artifactSemVersion - ${artifactSemVersion}" 
                 echo "repoName - ${repoName}" 
+                sleep(time:3,unit:"SECONDS")
                 snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
           }
         }
