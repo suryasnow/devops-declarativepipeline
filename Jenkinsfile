@@ -40,7 +40,7 @@ pipeline {
                         steps {
                             snDevOpsStep()
                             sh 'mvn compile'
-                            sh 'mvn verify'
+                            //sh 'mvn verify'
                         }
                     }
                 }          
