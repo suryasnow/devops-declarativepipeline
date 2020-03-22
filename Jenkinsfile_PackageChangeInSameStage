@@ -32,6 +32,7 @@ pipeline {
                     steps {
                         snDevOpsStep()
                         sh 'mvn compile'
+                        sh 'mvn clean'
                         sh 'mvn test -Dtest=AppTest'
                     }
                 }
@@ -39,19 +40,25 @@ pipeline {
                         steps {
                             snDevOpsStep()
                             sh 'mvn compile'
-                            sh 'mvn verify'
                         }
                     }
-                }          
+               
+                post {
+                    always {
+                        junit '**/target/surefire-reports/*.xml' 
+                  }
+                }
+              }                          
         }
         
         stage('IT test') {
             steps {
                 snDevOpsStep()
+                sh 'mvn clean'
                 sh 'mvn test -Dtest=NegativeTest'
             }
             post {
-                success {
+                always {
                     junit '**/target/surefire-reports/*.xml' 
                   }
               }
