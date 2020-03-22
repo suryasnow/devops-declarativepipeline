@@ -1,2 +1,2 @@
 # devops-scriptedpipeline
-# tag 3.5
+# tag 3.6
