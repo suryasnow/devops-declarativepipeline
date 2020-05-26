@@ -23,7 +23,7 @@ pipeline {
                 echo "artifactSemVersion - ${artifactSemVersion}" 
                 echo "repoName - ${repoName}" 
                 sleep(time:3,unit:"SECONDS")
-                snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
+                //snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
           }
         }
 
@@ -32,14 +32,14 @@ pipeline {
                 stage('Unit test inner') {
                     steps {
                         snDevOpsStep()
-                        sh 'mvn compile'
+                       // sh 'mvn compile'
                         //sh 'mvn test -Dtest=AppTest'
                     }
                 }
                 stage('static code test') {
                         steps {
-                            snDevOpsStep()
-                            sh 'mvn compile'
+                          //  snDevOpsStep()
+                           // sh 'mvn compile'
                             //sh 'mvn verify'
                         }
                     }
@@ -51,7 +51,7 @@ pipeline {
                 snDevOpsStep()
                 //sh 'mvn test -Dtest=NegativeTest'
                 echo "packageName - ${packageName}" 
-                snDevOpsPackage(name: "${packageName}", artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
+               // snDevOpsPackage(name: "${packageName}", artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
             }
             post {
                 always {
