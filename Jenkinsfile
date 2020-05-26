@@ -33,7 +33,7 @@ pipeline {
                     steps {
                         snDevOpsStep()
                         sh 'mvn compile'
-                        sh 'mvn test -Dtest=AppTest'
+                        //sh 'mvn test -Dtest=AppTest'
                     }
                 }
                 stage('static code test') {
@@ -49,7 +49,7 @@ pipeline {
         stage('IT test') {
             steps {
                 snDevOpsStep()
-                sh 'mvn test -Dtest=NegativeTest'
+                //sh 'mvn test -Dtest=NegativeTest'
                 echo "packageName - ${packageName}" 
                 snDevOpsPackage(name: "${packageName}", artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
             }
