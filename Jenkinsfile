@@ -39,7 +39,7 @@ pipeline {
                 stage('static code test') {
                         steps {
                           //  snDevOpsStep()
-                           // sh 'mvn compile'
+                            sh 'mvn compile'
                             //sh 'mvn verify'
                         }
                     }
