@@ -35,11 +35,7 @@ pipeline {
                         sh 'mvn clean'
                         sh 'mvn test -Dtest=AppTest'
                     }
-                    post {
-                        always {
-                         junit '**/target/surefire-reports/*.xml' 
-                        }
-                    }
+                   
                 }
                 stage('static code test') {
                         steps {
