@@ -65,7 +65,7 @@ pipeline {
                 stage('UAT pre-prod deploy') { 
                     steps {
                         snDevOpsStep()     
-                        //snDevOpsChange()
+                        snDevOpsChange()
                     }
                 }
             }
