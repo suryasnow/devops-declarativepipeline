@@ -53,10 +53,10 @@ pipeline {
                 echo "packageName - ${packageName}" 
                // snDevOpsPackage(name: "${packageName}", artifactsPayload:"""{"artifacts": [{"name": "${artifactName}","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "${repoName}"}]}""")
             }
-            post {
-                always {
-                junit '**/target/surefire-reports/*.xml' 
-            }
+          //  post {
+            //    always {
+              //  junit '**/target/surefire-reports/*.xml' 
+            //}
      }
         }
         
